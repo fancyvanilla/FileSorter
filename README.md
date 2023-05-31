@@ -9,7 +9,7 @@ Furthermore, the File Sorter script is designed with extensibility in mind, allo
 With the File Sorter, you can quickly and effortlessly organize your files, saving time and reducing clutter in your directories.
 
 
-#Quick Start
+# Quick Start
 
 1-Ensure Python 3 is installed on your system.
 
