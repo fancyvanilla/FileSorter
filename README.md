@@ -19,7 +19,7 @@ With the File Sorter, you can quickly and effortlessly organize your files, savi
 
 4-Run the following command to view the available options and usage instructions: python3 fileSorter.py -h
 
-5-Organize your files by specifying the source directory:python3 fileSorter.py /path/to/source/directory
+5-Organize your files by specifying the source directory: python3 fileSorter.py /path/to/source/directory
 
 6-Check your organized files in the source directory .
 
