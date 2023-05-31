@@ -35,7 +35,7 @@ def organizeFiles(source_dir):
     destination_folders=createDestinationFolders(source_dir)
     for filePath in os.scandir(source_dir):
         if filePath.is_file():
-            ext = os.path.splitext(filePath.name)[1][1:].lower() #or filenName[fileName.find(".")+1:]
+            ext = os.path.splitext(filePath.name)[1][1:].lower() 
             destination_folder=None
             for folder,extentions in destination_folders.items():
                 if ext in extentions:
