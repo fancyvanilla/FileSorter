@@ -16,35 +16,29 @@ art="""
 """
 
 def createDestinationFolders(source_dir):
-    destination_folders = {
-        "Photos": ["jpg", "jpeg", "png", "gif"],
-        "Music": ["mp3", "wav", "flac"],
-        "Documents": ["pdf", "docx", "xlsx", "pptx"],
-        "Videos": ["mp4", "avi", "mkv"],
-        "Python":["py"],
-        "Others": [], # For files with unknown or unsupported types
-    }
-    for folder in destination_folders:
-        folder_path=os.path.join(source_dir,folder)
+    with open("config.json","r") as f:
+        destinationFolders=json.load(f)
+        for folder in destinationFolders["folders"]:
+          folder_path=os.path.join(source_dir,folder)
         if not (os.path.exists(folder_path)):
             os.makedirs(folder_path)
-    return destination_folders
+        return destinationFolders
                          
 
 def organizeFiles(source_dir):
-    destination_folders=createDestinationFolders(source_dir)
+    destinationFolders=createDestinationFolders(source_dir)
     for filePath in os.scandir(source_dir):
         if filePath.is_file():
-            ext = os.path.splitext(filePath.name)[1][1:].lower() #or filenName[fileName.find(".")+1:]
-            destination_folder=None
-            for folder,extentions in destination_folders.items():
+            ext = os.path.splitext(filePath.name)[1][1:].lower()
+            destinationFolder=None
+            for folder,extentions in destinationFolders.items():
                 if ext in extentions:
-                    destination_folder=folder
+                    destinationFolder=folder
                     break
-            if destination_folder==None:
-                destination_folder="Others"
-            dest_path=os.path.join(source_dir,destination_folder)
-            shutil.move(filePath.path,dest_path)
+            if destinationFolder==None:
+                destinationFolder="Others"
+            destPath=os.path.join(source_dir,destinationFolder)
+            shutil.move(filePath.path,destPath)
  
     
 def main():
