@@ -4,6 +4,7 @@ import os
 import shutil
 import argparse
 from PIL import Image
+import magic
 
 
 art="""
@@ -30,11 +31,10 @@ def createDestinationFolders(source_dir):
                          
 def organizeFiles(source_dir):
     destinationFolders=createDestinationFolders(source_dir)
-    print(destinationFolders)
     for filePath in os.scandir(source_dir):
         if filePath.is_file():
             ext = os.path.splitext(filePath.name)[1][1:].lower()
-            if ext in destinationFolder["ignore"]:
+            if ext in destinationFolders["ignore"]:
                 break
             destinationFolder=None
             for folder,extentions in destinationFolders["folders"].items():
@@ -48,7 +48,6 @@ def organizeFiles(source_dir):
               os.makedirs(destPath)
             shutil.move(filePath.path,destPath)
  
-    
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("source_dir", help="Path to the source directory")
