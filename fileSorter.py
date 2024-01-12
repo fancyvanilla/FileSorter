@@ -26,26 +26,26 @@ def is_image(file_path):
 def createDestinationFolders(source_dir):
     with open("config.json","r") as f:
         destinationFolders=json.load(f)
-        for folder in destinationFolders["folders"]:
-          folder_path=os.path.join(source_dir,folder)
-        if not (os.path.exists(folder_path)):
-            os.makedirs(folder_path)
         return destinationFolders
                          
-
 def organizeFiles(source_dir):
     destinationFolders=createDestinationFolders(source_dir)
+    print(destinationFolders)
     for filePath in os.scandir(source_dir):
         if filePath.is_file():
             ext = os.path.splitext(filePath.name)[1][1:].lower()
+            if ext in destinationFolder["ignore"]:
+                break
             destinationFolder=None
-            for folder,extentions in destinationFolders.items():
+            for folder,extentions in destinationFolders["folders"].items():
                 if ext in extentions:
                     destinationFolder=folder
                     break
             if destinationFolder==None:
                 destinationFolder="Others"
             destPath=os.path.join(source_dir,destinationFolder)
+            if not (os.path.exists(destPath)):
+              os.makedirs(destPath)
             shutil.move(filePath.path,destPath)
  
     
@@ -53,7 +53,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("source_dir", help="Path to the source directory")
     args = parser.parse_args()
-    source_dir = args.source_dir
+    source_dir = args.source_dir    
     if not os.path.isdir(source_dir):
         print("Invalid destination directory!")
         exit()
