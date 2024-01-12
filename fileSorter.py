@@ -4,7 +4,6 @@ import os
 import shutil
 import argparse
 from PIL import Image
-import magic
 
 
 art="""
@@ -17,6 +16,11 @@ art="""
  \__/    (__\_|_)\_______)\_______)(_______/  \"_____/   |__|  \___)    \__|    \_______)|__|  \___)    
                                                                                                         
 """
+
+def is_executable(file_path):
+    return os.access(file_path, os.X_OK)
+#this does not work! we will need to figure one out or correclty install magic
+
 def is_image(file_path):
     try:
         Image.open(file_path).close()
@@ -35,7 +39,7 @@ def organizeFiles(source_dir):
         if filePath.is_file():
             ext = os.path.splitext(filePath.name)[1][1:].lower()
             if ext in destinationFolders["ignore"]:
-                break
+                continue
             destinationFolder=None
             for folder,extentions in destinationFolders["folders"].items():
                 if ext in extentions:
@@ -43,6 +47,7 @@ def organizeFiles(source_dir):
                     break
             if destinationFolder==None:
                 destinationFolder="Others"
+            print(destinationFolder)
             destPath=os.path.join(source_dir,destinationFolder)
             if not (os.path.exists(destPath)):
               os.makedirs(destPath)
