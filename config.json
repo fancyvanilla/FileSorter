@@ -1,10 +1,11 @@
 {
    "folders" : {
-    "Photos": ["jpg", "jpeg", "png", "gif","jpg"],
+    "Photos": ["jpg", "jpeg", "png", "gif"],
     "Music": ["mp3", "wav", "flac"],
     "Videos": ["mp4", "avi", "mkv"],
     "Python":["py"],
     "Text":["txt"],
     "Others": []
-}
+},
+"ignore":["exe"]
 }
