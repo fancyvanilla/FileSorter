@@ -2,7 +2,6 @@
    "folders" : {
     "Photos": ["jpg", "jpeg", "png", "gif"],
     "Music": ["mp3", "wav", "flac"],
-    "Documents": ["pdf", "docx", "xlsx", "pptx"],
     "Videos": ["mp4", "avi", "mkv"],
     "Python":["py"],
     "Others": []
