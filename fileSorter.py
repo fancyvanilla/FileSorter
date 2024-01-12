@@ -1,7 +1,9 @@
 #! /usr/bin/python3
+import json
 import os
 import shutil
 import argparse
+from PIL import Image
 
 
 art="""
@@ -14,6 +16,12 @@ art="""
  \__/    (__\_|_)\_______)\_______)(_______/  \"_____/   |__|  \___)    \__|    \_______)|__|  \___)    
                                                                                                         
 """
+def is_image(file_path):
+    try:
+        Image.open(file_path).close()
+        return True
+    except (OSError, IOError):
+        return False
 
 def createDestinationFolders(source_dir):
     with open("config.json","r") as f:

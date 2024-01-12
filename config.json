@@ -1,9 +1,10 @@
 {
    "folders" : {
-    "Photos": ["jpg", "jpeg", "png", "gif"],
+    "Photos": ["jpg", "jpeg", "png", "gif","jpg"],
     "Music": ["mp3", "wav", "flac"],
     "Videos": ["mp4", "avi", "mkv"],
     "Python":["py"],
+    "Text":["txt"],
     "Others": []
 }
 }
